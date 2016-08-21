@@ -12,32 +12,30 @@ PICK_LAST = lambda do |array, offset, size|
 end
 
 PICK_MEDIAN_OF_THREE = lambda do |array, offset, size|
-  arr = array[offset...size]
-
-  a, b, c = 0, (arr.size - 1) / 2, arr.size - 1
-  ea, eb, ec = arr[a], arr[b], arr[c]
+  a, b, c = offset, (offset + size - 1) / 2, size - 1
+  ea, eb, ec = array[a], array[b], array[c]
 
   if ea > eb
     if eb > ec
       # ea > eb > ec
-      b
+      b - offset
     elsif ec > ea
       # ec > ea > eb
-      a
+      a - offset
     else
       # ea > ec > eb
-      c
+      c - offset
     end
   else
     if ea > ec
       # eb > ea > ec
-      a
+      a - offset
     elsif ec > eb
       # ec > eb > ea
-      b
+      b - offset
     else
       # eb > ec > ea
-      c
+      c - offset
     end
   end
 end
@@ -119,7 +117,7 @@ describe 'PICK_MEDIAN_OF_THREE' do
   it { PICK_MEDIAN_OF_THREE.call([3, 1, 2], 0, 3).must_equal 2 }
 
   it { PICK_MEDIAN_OF_THREE.call([4, 5, 6, 7], 0, 4).must_equal 1 }
-  it { PICK_MEDIAN_OF_THREE.call([8, 2, 4, 5, 7, 1], 0, 8).must_equal 2 }
+  it { PICK_MEDIAN_OF_THREE.call([8, 2, 4, 5, 7, 1], 0, 6).must_equal 2 }
   it { PICK_MEDIAN_OF_THREE.call([8, 2, 4, 5, 7, 1], 2, 6).must_equal 0 }
   it { PICK_MEDIAN_OF_THREE.call([0, 2, 1, 3, 4], 0, 3).must_equal 2 }
   it { PICK_MEDIAN_OF_THREE.call([0, 5, 4, 9, 4], 1, 3).must_equal 0 }
