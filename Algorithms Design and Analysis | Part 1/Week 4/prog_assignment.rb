@@ -86,7 +86,7 @@ def unleash_the_power_of_kosaraju!(graph)
   first_scan = DFS.new(graph.reversed_adjacency_list)
   second_scan = DFS.new(graph.adjacency_list)
 
-  (second_scan.detect_sccs!(first_scan.detect_finishing_times!).sort.reverse + [0, 0,0,0,0])[0...5]
+  (second_scan.detect_sccs!(first_scan.detect_finishing_times!).sort.reverse + [0, 0, 0, 0, 0])[0...5]
 end
 
 describe Graph do
