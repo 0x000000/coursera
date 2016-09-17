@@ -1,6 +1,6 @@
-require 'pqueue' # gem install pqueue
 require 'minitest/spec'
 require 'minitest/autorun'
+require 'pqueue' # gem install pqueue
 
 alias context describe
 
